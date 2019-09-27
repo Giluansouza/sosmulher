@@ -190,6 +190,54 @@ class Auth extends Controller
         ]);
     }
 
+    public function reset(array $data): void
+    {
+        if (AuthRepository::user()) {
+            redirect("/app");
+        }
+
+        if (!empty($data['csrf'])) {
+            if (!csrf_verify($data)) {
+                $json['message'] = $this->message->error("Erro ao enviar, favor use o formulário")->render();
+                echo json_encode($json);
+                return;
+            }
+
+            if (empty($data["password"]) || empty($data["conf_password"])) {
+                $json["message"] = $this->message->info("Informe e repita a senha para continuar")->render();
+                echo json_encode($json);
+                return;
+            }
+
+            list($email, $code) = explode("|", $data["code"]);
+            $auth = new AuthRepository();
+
+            if ($auth->reset($email, $code, $data["password"], $data["conf_password"])) {
+                $this->message->success("Senha alterada com sucesso.")->flash();
+                $json["redirect"] = url("/");
+            } else {
+                $json["message"] = $auth->message()->before("Ooops! ")->render();
+            }
+
+            echo json_encode($json);
+            return;
+        }
+
+        $head = $this->seo->render(
+            CONF_SITE_NAME." | Nova senha",
+            CONF_SITE_DESC,
+            url("/recuperar"),
+            theme("/assets/images/share.jpg")
+        );
+
+        echo $this->view->render("auth/reset", [
+            "head" => $head,
+            "code" => $data["code"],
+            "app" => "resetar",
+            "nav" => $this->nav
+        ]);
+    }
+
     public function logout()
     {
         $this->message->info("Você saiu do sistema")->flash();

@@ -135,10 +135,10 @@ class AuthRepository extends AbstractDefaultRepository
      */
     public function reset(string $email, string $code, string $password, string $passwordRe): bool
     {
-        $user = People::where("email", "=", $email)->first();
+        $user = User::where("email", "=", $email)->first();
 
         if (!$user) {
-            $this->message->warning("A conta para recuperação não foi encontrada.");
+            $this->message->warning("A conta não foi encontrada.");
             return false;
         }
 

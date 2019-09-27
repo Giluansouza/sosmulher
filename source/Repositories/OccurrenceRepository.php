@@ -38,7 +38,6 @@ class OccurrenceRepository extends AbstractDefaultRepository implements Occurren
         string $plaintiff_coordinates
     )
     {
-
         try {
             $newOccurrence = $this->model;
 
@@ -68,21 +67,8 @@ class OccurrenceRepository extends AbstractDefaultRepository implements Occurren
     public function update(array $data): bool
     {
         $update = Occurrence::find($data['occurrence_id']);
-        $update->police_unit_id = $data['police_unit_id'];
-        $update->address_id = $data['address_id']?:null;
-        $update->source = $data['source'];
-        $update->source_number = $data['source_number']?:null;
-        $update->date_fact = $data['date_fact'];
-        $update->fact_time = $data['fact_time'];
-        $update->time_interval = $data['time_interval'];
-        $update->weapon = $data['weapon'];
-        $update->caliber = $data['caliber'];
-        $update->type_vehicle = $data['type_vehicle'];
-        $update->comments = $data['comments'];
-        if (isset($data['reserved_note'])) {
-            $update->reserved_note = $data['reserved_note'];
-        }
-        $update->motivation = $data['motivation'];
+        $update->status = $data['status'];
+
         if (!$update->save()) {
             $this->message->error("Não foi possível salvar o endereço");
             return false;

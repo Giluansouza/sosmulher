@@ -90,6 +90,7 @@ class People extends App
             echo json_encode($json);
             return;
         }
+
         $head = $this->seo->render(
             "Administração - ".CONF_SITE_NAME,
             CONF_SITE_DESC,//descrição do site

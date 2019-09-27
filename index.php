@@ -33,6 +33,8 @@ $route->get('/cadastro', 'Auth:register');
 $route->post('/cadastro', 'Auth:register');
 $route->get('/recuperar-senha', 'Auth:forget');
 $route->post('/recuperar-senha', 'Auth:forget');
+$route->get('/recuperar/{code}', 'Auth:reset');
+$route->post('/recuperar/resetar', 'Auth:reset');
 $route->get('/sair', 'Auth:logout');
 
 /***********************
@@ -63,6 +65,7 @@ $route->namespace("DevBoot\Controllers\Dev");
 $route->group(null);
 $route->get('/admin', 'Admin:home');
 $route->get('/admin/ocorrencia/{id}', 'Occurrence:show');
+$route->post('/admin/ocorrencia/status', 'Occurrence:show');
 
 /***********************
  * ERROR ROUTES        *

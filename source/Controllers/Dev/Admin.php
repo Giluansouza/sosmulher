@@ -27,8 +27,13 @@ class Admin extends Dev
      */
     public function home(): void
     {
+        $filter = [
+            'url' => "",
+            "type" => 1
+        ];
+
         $query = new OccurrenceRepository;
-        $lists = $query->getOccurrences(["type" => 1], 5, false);
+        $lists = $query->getOccurrences($filter, 3, true);
         $denunciation = $query->getOccurrences(["type" => 0], 5, false);
 
         $head = $this->seo->render(
