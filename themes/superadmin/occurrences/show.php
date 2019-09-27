@@ -17,7 +17,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="card card-box">
             <div class="card-header">
-                <h3><i class="fa fa-fw fa-clipboard"></i> Ocorrência</h3>
+                <h3><i class="fa fa-fw fa-clipboard"></i> Ocorrência <?= ($result->type == 1) ? "- BOTÃO DO PÂNICO" : "";  ?></h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -33,8 +33,8 @@
                                 <tr>
                                     <td><?= date_fmt($result->created_at, "d/m/Y H:i") ?></td>
                                     <td><?= ($result->real_time == 0) ? "Não" : "Sim" ?></td>
-                                    <td><?= $result->plaintiff ?></td>
-                                    <td><?= ($result->status == 0) ? "Aberta" : "Visualizada"; ?></td>
+                                    <td><?= $result->plaintiff?:$result->User->name ?></td>
+                                    <td><?= ($result->status == 0) ? "Aberta" : ($result->status == 1) ? "Visualizada" : "Encerrada"; ?></td>
                                 </tr>
                                 <?php if ($result->type == 0): ?>
                                     <tr>
@@ -51,13 +51,13 @@
                                     <tr>
                                         <td colspan="4"><?= $result->note ?></td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="4"><strong>Endereço</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><?= (isset($result->Address->public_place)) ? $result->Address->public_place.' '.$result->Address->district.' Complemento: '.$result->Address->complement : "NI" ?></td>
+                                    </tr>
                                 <?php endif ?>
-                                <tr>
-                                    <td colspan="4"><strong>Endereço</strong></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><?= (isset($result->Address->public_place)) ? $result->Address->public_place.' '.$result->Address->district.' Complemento: '.$result->Address->complement : "NI" ?></td>
-                                </tr>
                             </table>
                         </div>
                     </div>
@@ -67,8 +67,13 @@
                 <form action="<?= url("admin/ocorrencia/status") ?>" method="post">
                     <?= csrf_input(); ?>
                     <input type="hidden" name="occurrence_id" value="<?= $result->id ?>">
-                    <input type="hidden" name="status" value="1">
-                    <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Visualizada</button>
+                    <?php if ($result->status == 0): ?>
+                        <input type="hidden" name="status" value="1">
+                        <button type="submit" class="btn btn-info btn-sm"><i class="fas fa-check"></i> Visualizada</button>
+                    <?php else: ?>
+                        <input type="hidden" name="status" value="2">
+                        <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Finalizar</button>
+                    <?php endif ?>
                 </form>
             </div>
         </div>

@@ -99,6 +99,7 @@ class OccurrenceRepository extends AbstractDefaultRepository implements Occurren
     {
         $query = parent::newQuery();
         $query->where("type", '=', $filter['type'])
+            ->where("status", "=", $filter['status'])
             ->with(['User'])
             ->orderBy('updated_at', 'DESC')
             ->orderBy('status', 'DESC');
