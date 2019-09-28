@@ -4,6 +4,7 @@ namespace DevBoot\Controllers\Auth;
 
 use DevBoot\Core\Controller;
 use DevBoot\Repositories\AuthRepository;
+use DevBoot\Commands\UserCmd;
 
 /**
  *
