@@ -44,7 +44,7 @@ class AddressRepository extends AbstractDefaultRepository
                 return false;
             }
         } catch (\PDOException $e) {
-            $this->message->error("Erro: ".$e->getMessage());
+            $this->message->error("Não foi possível cadastrar o endereço");
             return false;
         }
 

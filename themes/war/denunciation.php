@@ -97,9 +97,9 @@
         };
 
         $('#fill').on('click', function(){
-            console.log(address[1].address_components[1]);
-            $('#public_place').val(address[0].address_components[0].long_name+', '+address[0].address_components[1].long_name+', '+address[0].address_components[2].long_name);
-            $('#district').val(address[0].address_components[3].long_name);
+            // console.log(address[1].address_components[1]);
+            $('#public_place').val(address[0].address_components[0].long_name+', '+address[0].address_components[1].long_name);
+            $('#district').val(address[0].address_components[2].long_name);
             // Coordenadas do endereço da ocorrência
             $('#address_coordinates').val(lat+","+lng);
         });
@@ -162,7 +162,7 @@
             geocoder.geocode({'location': latlng}, function(results, status) {
                 if (status === 'OK') {
                     if (results[0]) {
-                        console.log(results);
+                        // console.log(results);
                         address = results;
                         $('#geolocation span').text(results[0].formatted_address);
                     } else {
