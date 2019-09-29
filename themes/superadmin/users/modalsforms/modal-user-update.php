@@ -1,7 +1,7 @@
 <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="custom-modal" aria-hidden="true" id="modal_user_update_<?= $value->id ?>">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="<?= url("{$user->url}/atualizar-usuario") ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= url("admin/atualizar-usuario") ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="fas fa-user"></i> Atualizar Usuário</h5>
                     <button type="button" class="close" data-dismiss="modal">

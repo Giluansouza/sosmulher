@@ -44,7 +44,8 @@ class Admin extends Dev
         );
 
         echo $this->view->render("home", [
-            'head' => $head,
+            "head" => $head,
+            "user" => $this->user,
             "lists" => $lists,
             "denunciation" => $denunciation
         ]);

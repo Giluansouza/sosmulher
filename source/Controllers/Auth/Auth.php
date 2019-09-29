@@ -77,7 +77,7 @@ class Auth extends Controller
                     $json['redirect'] = url("/admin");
                 }
             } else {
-                $json['message'] = $this->message->error($auth->message().'. Tentativas '.$_SESSION['weblogin']->requests.", após 5 tentativas seu usuário será bloqueado.")->flash();
+                $json['message'] = $this->message->error($auth->message())->flash();
                 $json['redirect'] = url("/");
                 echo json_encode($json);
                 return;

@@ -1,15 +1,9 @@
 <div class="modal-body">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="form-group">
-                <label>Primeiro Nome *</label>
-                <input class="form-control" name="first_name" type="text" value="<?= $value->first_name??"" ?>" required />
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Sobrenome *</label>
-                <input class="form-control" name="last_name" type="text" value="<?= $value->last_name??"" ?>" required />
+                <label>Nome *</label>
+                <input class="form-control" name="name" type="text" value="<?= $value->name??"" ?>" readonly />
             </div>
         </div>
     </div>
@@ -17,17 +11,9 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Email *</label>
-                <input class="form-control" name="email" type="email" value="<?= $value->email??"" ?>" required />
+                <input class="form-control" name="email" type="email" value="<?= $value->email??"" ?>" />
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Matrícula</label>
-                <input class="form-control" name="office_registry" type="text" value="<?= $value->office_registry??"" ?>" />
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Nível</label>
@@ -40,66 +26,33 @@
                 </select>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Data de Nascimento *</label>
+                <input class="form-control" name="date_birth" type="date_birth" value="<?= $value->date_birth??"" ?>" readonly />
+            </div>
+        </div>
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Telefone</label>
-                <input class="form-control" name="phone_number" value="<?= $value->phone_number??"" ?>" type="text">
+                <input class="form-control" name="phone_number" value="<?= $value->phone_number??"" ?>" type="text" readonly>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Unidade</label>
-                <select name="office_unity_id" class="form-control">
-                    <?php foreach ($units as $key => $val):
-                            $selected = ($val->id == $value->office_unity_id) ? 'selected=""' : '';
-                        ?>
-                        <option value="<?= $val->id ?>" <?= $selected ?>><?= $val->name ?></option>
-                    <?php endforeach ?>
-                </select>
+                <label for="rg">RG</label>
+                <input class="form-control" name="rg" id="rg" type="text" value="<?= $value->rg??"" ?>" readonly>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label>Cargo/Função</label>
-                <input class="form-control" name="office" type="text" value="<?= $value->office??"" ?>">
+                <label for="cpf">CPF</label>
+                <input class="form-control" name="cpf" id="cpf" type="text" value="<?= $value->cpf??"" ?>" readonly>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Active</label>
-                <select name="status" class="form-control">
-                    <?php
-                        $array = ['ON', 'OFF', 'BLOCK'];
-                        foreach ($array as $key => $val):
-                            $selected = ($val == $value->status) ? 'selected=""' : '';
-                        ?>
-                        <option value="<?= $val ?>" <?= $selected ?>><?= $val ?></option>
-                    <?php endforeach ?>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label>Inteligência</label>
-                <select name="reserved" class="form-control">
-                    <?php
-                        $array = ['YES', 'NO'];
-                        foreach ($array as $key => $val):
-                            $selected = ($val == $value->reserved) ? 'selected=""' : '';
-                        ?>
-                        <option value="<?= $val ?>" <?= $selected ?>><?= $val ?></option>
-                    <?php endforeach ?>
-                </select>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="form-group">
-        <label>Avatar image (optional):</label>
-        <br />
-        <input type="file" name="image">
-    </div> -->
 </div>

@@ -65,6 +65,8 @@ $route->group(null);
 $route->get('/admin', 'Admin:home');
 $route->get('/admin/ocorrencia/{id}', 'Occurrence:show');
 $route->post('/admin/ocorrencia/status', 'Occurrence:show');
+$route->get('/admin/usuarios', 'User:list');
+$route->post('/admin/atualizar-usuario', 'User:list');
 
 /***********************
  * ERROR ROUTES        *

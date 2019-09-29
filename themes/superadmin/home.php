@@ -55,7 +55,7 @@
 
                                         <tr <?= $class?> >
                                             <td><?= date_fmt($list->updated_at, "d/m/Y H:i"); ?></td>
-                                            <td><?= $list->users_id; ?></td>
+                                            <td><?= $list->User->name; ?></td>
                                             <td><?= $list->plaintiff_coordinates; ?></td>
                                             <td><?= $situation; ?></td>
                                             <td><?= ($list->status == 0)? "<a href=\"admin/ocorrencia/{$list->id}\" class=\"btn btn-sm btn-warning\">Visualizar</a>" : "Visualizada"; ?></td>
