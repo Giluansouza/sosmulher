@@ -27,7 +27,8 @@ class War extends Controller
     {
         parent::__construct(__DIR__ . "/../../themes/" . CONF_VIEW_WAR . "/");
 
-        $this->nav = "widgets/nav";
+        $this->nav['nav'] = "widgets/nav";
+        $this->nav['link'] = "";
     }
 
     /**

@@ -34,6 +34,7 @@ class UserCmd extends Command
         $query = new UserRepository();
         $this->message = $query->message();
         return $query->create(
+            $this->data['name'],
             $this->data['cpf'],
             $this->data['email'],
             $this->data['password']
@@ -48,7 +49,7 @@ class UserCmd extends Command
     protected function validation(): bool
     {
 
-        if ($this->data['cpf'] == "" || $this->data['email'] == "" || $this->data['password'] == "") {
+        if ($this->data['name'] == "" || $this->data['cpf'] == "" || $this->data['email'] == "" || $this->data['password'] == "") {
             $this->message->error("Todos os campos são de preenchimento obrigatório");
             return false;
         }

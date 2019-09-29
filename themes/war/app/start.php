@@ -9,6 +9,7 @@ Intro Section
             <div class="col-lg-12 venue-info">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-12">
+                        <div class="ajax_response"><?= flash(); ?></div>
                         <form class="ajax_off" id="confirmPanic" action="<?= url("app/panico") ?>" method="post">
                             <?= csrf_input(); ?>
                             <input type="hidden" value="<?= $user->id??"" ?>" class="form-control" name="users_id">
