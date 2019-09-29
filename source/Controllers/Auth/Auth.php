@@ -14,9 +14,10 @@ class Auth extends Controller
 
     public function __construct()
     {
-         parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_WAR . "/");
+        parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_WAR . "/");
 
-         $this->nav = "widgets/nav";
+        $this->nav['nav'] = "widgets/nav";
+        $this->nav['link'] = "";
     }
 
     public function login(array $data)

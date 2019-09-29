@@ -62,7 +62,7 @@
                                 <input type="hidden" class="form-control" id="plaintiff_coordinates" name="plaintiff_coordinates">
                                 <input type="hidden" class="form-control" id="address_coordinates" name="coordinates" value="">
                                 <button type="submit" class="primary-btn scrollto">Enviar denúncia</button>
-                                <a href="<?= url("/") ?>" class="button secondary-btn scrollto">Voltar</a>
+                                <a href="<?= url($nav['link']) ?>" class="button secondary-btn scrollto">Voltar</a>
                             </form>
                         </div>
                     </div>

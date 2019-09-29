@@ -54,7 +54,7 @@
                 <!-- <h1><a href="#main">C<span>o</span>nf</a></h1> -->
                 <a href="#intro" class="scrollto"><img src="<?= theme("assets/img/logo.png") ?>" alt="SOS Mulher" title="SOSMulher"></a>
             </div>
-            <?= $v->insert($nav) ?>
+            <?= $v->insert($nav['nav']) ?>
         </div>
     </header><!-- #header -->
 
