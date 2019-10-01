@@ -23,6 +23,9 @@
             </div>
             <div class="card-body">
                 <!-- <div class="widget-messages nicescroll" style="height: 200px;"> -->
+                <?php if (empty($lists->toArray())): ?>
+                        <p class="alert alert-warning">Não existem acionamentos do botão do pânico</p>
+                <?php else: ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -35,16 +38,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!$lists): ?>
-                                    <tr>
-                                        <td colspan="4">
-                                            <span class="alert alert-warning">
-                                                Não existem acionamentos do botão do pânico
-                                            </span>
-                                        </td>
-                                    </tr>
-                                <?php else:
-                                    foreach ($lists as $list):
+                                <?php
+                                    foreach ($lists as $key => $list):
                                         $class = "";
                                         $situation = "Visualizada";
                                         if ($list->status == 0) {
@@ -52,19 +47,23 @@
                                             $situation = "Aberta";
                                         }
                                 ?>
-
-                                        <tr <?= $class?> >
+                                        <tr <?= $class ?> >
                                             <td><?= date_fmt($list->updated_at, "d/m/Y H:i"); ?></td>
                                             <td><?= $list->User->name; ?></td>
                                             <td><?= $list->plaintiff_coordinates; ?></td>
                                             <td><?= $situation; ?></td>
                                             <td><?= ($list->status == 0)? "<a href=\"admin/ocorrencia/{$list->id}\" class=\"btn btn-sm btn-warning\">Visualizar</a>" : "Visualizada"; ?></td>
+                                            <?php if ($key == 0 && $list->status == 0): ?>
+                                                <audio id="notificacao" preload="auto" autoplay="" src="<?= theme("/../../storage/files/beautiful-guitar.wav") ?>">
+                                                    <p>Seu nevegador não suporta o elemento audio.</p>
+                                                </audio>
+                                            <?php endif ?>
                                         </tr>
                                     <?php endforeach; ?>
-                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
+                <?php endif; ?>
                 <!-- </div> -->
             </div>
             <div class="card-footer small text-muted">Atualizado até <?= date('d/m/Y H:i'); ?></div>
@@ -125,9 +124,6 @@
         </div>
     </div>
 </div>
-<!-- <audio id="notificacao" preload="auto" src="<= theme("/../../storage/files/beautiful-guitar.wav") ?>" autoplay="autoplay" controls="controls" loop>
-    <p>Seu nevegador não suporta o elemento audio.</p>
-</audio> -->
 <!-- Autoplay is allowed. -->
 <!-- <iframe src="<= theme("/../../storage/files/beautiful-guitar.wav") ?>" allow="autoplay"> -->
 <!-- <audio id="notificacao" autoplay>
@@ -136,6 +132,9 @@
 
 <?= $v->start("scripts"); ?>
     <script>
-
+        $( document ).ready(function() {
+          // Handler for .ready() called.
+            window.setTimeout('location.reload()', 30000);
+        });
     </script>
 <?= $v->end(); ?>

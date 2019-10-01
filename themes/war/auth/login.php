@@ -15,7 +15,7 @@
                             <form action="<?= url("/") ?>" method="post">
                                 <?= csrf_input(); ?>
                                 <div class="form-row mb-3">
-                                    <input type="text" class="form-control" name="email" placeholder="E-mail" autofocus="">
+                                    <input type="email" class="form-control" name="email" placeholder="E-mail" autofocus="">
                                 </div>
                                 <div class="form-row mb-3">
                                     <input type="password" class="form-control" name="password" placeholder="Senha">
