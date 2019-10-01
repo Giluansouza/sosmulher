@@ -6,7 +6,6 @@ use DevBoot\Interfaces\UserRepoInterface;
 use DevBoot\Repositories\AbstractDefaultRepository;
 use DevBoot\Core\Session;
 use DevBoot\Core\View;
-use DevBoot\Boot\Helpers;
 use DevBoot\Support\Email;
 use DevBoot\Support\Message;
 
@@ -127,8 +126,8 @@ class UserRepository extends AbstractDefaultRepository implements UserRepoInterf
     public function getAllUsers(array $filter = [], int $take = 10, bool $paginate = false): object
     {
         $query = parent::newQuery();
-        $query->orderBy('first_name', 'ASC')
-            ->orderBy('last_name', 'ASC');
+        $query->orderBy('name', 'ASC')
+            ->orderBy('level', 'ASC');
         return $this->doQuery($query, $filter, $take, $paginate);
     }
     // public function getUsers()

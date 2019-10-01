@@ -57,7 +57,7 @@
         </div>
         <!-- End Navigation -->
         <!-- Left Sidebar -->
-        <?= $v->insert("views/sidebar", ['url' => '/dev']); ?>
+        <?= $v->insert($user->nav, ['url' => '/dev']); ?>
         <!-- End Sidebar -->
         <div class="content-page">
             <!-- Start content -->
