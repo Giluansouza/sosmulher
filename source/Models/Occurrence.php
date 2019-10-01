@@ -24,7 +24,7 @@ class Occurrence extends Model
 
     public function User()
     {
-        return $this->hasMany(User::class, 'id', 'users_id');
+        return $this->hasOne(User::class, 'id', 'users_id');
     }
 
     public function Address()

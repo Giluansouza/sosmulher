@@ -4,6 +4,7 @@ namespace DevBoot\Controllers\Auth;
 
 use DevBoot\Core\Controller;
 use DevBoot\Repositories\AuthRepository;
+use DevBoot\Commands\UserCmd;
 
 /**
  *
@@ -13,9 +14,10 @@ class Auth extends Controller
 
     public function __construct()
     {
-         parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_WAR . "/");
+        parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_WAR . "/");
 
-         $this->nav = "widgets/nav";
+        $this->nav['nav'] = "widgets/nav";
+        $this->nav['link'] = "";
     }
 
     public function login(array $data)
@@ -75,7 +77,7 @@ class Auth extends Controller
                     $json['redirect'] = url("/admin");
                 }
             } else {
-                $json['message'] = $this->message->error($auth->message().'. Tentativas '.$_SESSION['weblogin']->requests.", após 5 tentativas seu usuário será bloqueado.")->flash();
+                $json['message'] = $this->message->error($auth->message())->flash();
                 $json['redirect'] = url("/");
                 echo json_encode($json);
                 return;

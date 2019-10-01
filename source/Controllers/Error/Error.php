@@ -19,9 +19,10 @@ class Error extends Controller
      */
     public function __construct()
     {
-         parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_WAR . "/");
+        parent::__construct(__DIR__ . "/../../../themes/" . CONF_VIEW_WAR . "/");
 
-         $this->nav = "widgets/nav";
+        $this->nav['nav'] = "widgets/nav";
+        $this->nav['link'] = "";
     }
 
     public function error(array $data): void
@@ -66,7 +67,7 @@ class Error extends Controller
             "head" => $head,
             "error" => $error,
             "app" => "cadastro",
-            "nav" => "$this->nav"
+            "nav" => $this->nav
         ]);
     }
 }

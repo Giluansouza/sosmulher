@@ -6,7 +6,6 @@ use DevBoot\Interfaces\UserRepoInterface;
 use DevBoot\Repositories\AbstractDefaultRepository;
 use DevBoot\Core\Session;
 use DevBoot\Core\View;
-use DevBoot\Boot\Helpers;
 use DevBoot\Support\Email;
 use DevBoot\Support\Message;
 
@@ -35,17 +34,17 @@ class UserRepository extends AbstractDefaultRepository implements UserRepoInterf
      * @param User $user
      * @return bool
      */
-    public function create($cpf, string $email, string $password)
+    public function create(string $name, string $cpf, string $email, string $password)
     {
 
         try {
 
             $newUser = $this->model;
 
+            $newUser->name = $name;
             $newUser->cpf = $cpf;
             $newUser->email = $email;
             $newUser->password = passwd($password);
-            // $newUser->forget = $user->forget;
             // $newUser->level = $user->level;
             // $newUser->office_registry = $user->office_registry;
             // $newUser->office = $user->office;
@@ -56,11 +55,11 @@ class UserRepository extends AbstractDefaultRepository implements UserRepoInterf
             // $newUser->reserved = $user->reserved;
             // $newUser->photo = $user->photo;
             if (!$newUser->save()) {
-                $this->message->error("Não foi possível cadastrar a notícia");
+                $this->message->error("Não foi possível finalizar o cadastro");
                 return;
             }
         } catch (\PDOException $e) {
-            $this->message->error("Erro: ".$e->getMessage());
+            $this->message->error("Não foi possível finalizar o cadastro");
             return false;
         }
 
@@ -127,8 +126,8 @@ class UserRepository extends AbstractDefaultRepository implements UserRepoInterf
     public function getAllUsers(array $filter = [], int $take = 10, bool $paginate = false): object
     {
         $query = parent::newQuery();
-        $query->orderBy('first_name', 'ASC')
-            ->orderBy('last_name', 'ASC');
+        $query->orderBy('name', 'ASC')
+            ->orderBy('level', 'ASC');
         return $this->doQuery($query, $filter, $take, $paginate);
     }
     // public function getUsers()

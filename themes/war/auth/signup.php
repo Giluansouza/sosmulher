@@ -15,16 +15,19 @@
                             <form action="<?= url("/cadastro") ?>" method="post">
                                 <?= csrf_input(); ?>
                                 <div class="form-row mb-3">
-                                    <input type="text" class="form-control" name="cpf" placeholder="Cpf" autofocus="">
+                                    <input type="text" class="form-control" name="name" placeholder="Nome Completo" autofocus="" required>
                                 </div>
                                 <div class="form-row mb-3">
-                                    <input type="email" class="form-control" name="email" placeholder="E-mail">
+                                    <input type="text" class="form-control" name="cpf" placeholder="Cpf" required>
                                 </div>
                                 <div class="form-row mb-3">
-                                    <input type="password" class="form-control" name="password" placeholder="Senha">
+                                    <input type="email" class="form-control" name="email" placeholder="E-mail" required>
                                 </div>
                                 <div class="form-row mb-3">
-                                    <input type="password" class="form-control" name="conf_password" placeholder="Confirmar senha">
+                                    <input type="password" class="form-control" name="password" placeholder="Senha" required>
+                                </div>
+                                <div class="form-row mb-3">
+                                    <input type="password" class="form-control" name="conf_password" placeholder="Confirmar senha" required>
                                 </div>
                                 <button type="submit" class="primary-btn scrollto">Cadastrar</button>
                                 <a href="<?= url("/") ?>" class="button secondary-btn scrollto">Voltar</a>

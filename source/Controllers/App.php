@@ -19,7 +19,6 @@ class App extends War
 {
 
     private $nav;
-    private $user;
     /**
      * Web constructor.
      */
@@ -33,7 +32,8 @@ class App extends War
         }
 
         $this->user = AuthRepository::user();
-        $this->nav = "app/topbar-nav";
+        $this->nav['nav'] = "app/topbar-nav";
+        $this->nav['link'] = "app";
     }
 
     /**

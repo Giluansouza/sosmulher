@@ -6,17 +6,16 @@ date_default_timezone_set('America/Sao_Paulo');
 
 require __DIR__ . "/vendor/autoload.php";
 
-$dotenv = Dotenv\Dotenv::create(__DIR__);
-$dotenv->load();
-
 /**
  * BOOTSTRAP
  */
 use CoffeeCode\Router\Router;
 use DevBoot\Core\Session;
+
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
+
 new \DevBoot\Core\Connect;
-
-
 $session = new Session();
 $route = new Router(url(), ":"); //os dois pontos para separar
 
@@ -66,6 +65,8 @@ $route->group(null);
 $route->get('/admin', 'Admin:home');
 $route->get('/admin/ocorrencia/{id}', 'Occurrence:show');
 $route->post('/admin/ocorrencia/status', 'Occurrence:show');
+$route->get('/admin/usuarios', 'User:list');
+$route->post('/admin/atualizar-usuario', 'User:list');
 
 /***********************
  * ERROR ROUTES        *

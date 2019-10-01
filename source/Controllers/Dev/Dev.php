@@ -30,25 +30,12 @@ class Dev extends Controller
         }
 
         $this->user = AuthRepository::user();
-        // if ($this->user->level < 4) {
-        //     $this->user->url = '/app'; // Link
-        //     if ($this->user->level == 2) {
-        //         $this->user->nav = 'views/nav/sidebar2'; // Menu
-        //     } else if ($this->user->level == 1) {
-        //         $this->user->nav = 'views/nav/sidebar1'; // Menu
-        //     } else {
-        //         $this->user->nav = 'views/nav/sidebar3'; // Menu
-        //     }
-        // } else {
-        //     $this->user->url = '/admin'; // Link
-        //     if ($this->user->level >= 5) {
-        //         $this->user->nav = 'admin/views/sidebar5'; // Menu
-        //     } else {
-        //         $this->user->nav = 'admin/views/sidebar4'; // Menu
-        //     }
-        // }
-        // $this->getUnitId = ($this->user->Units->name != $this->user->Units->adm_unit) ? $this->user->office_unity_id : 0;
-        // $this->oRepository = new OccurrenceRepository;
+
+        if ($this->user->level == 2) {
+            $this->user->nav = 'views/sidebar-dev'; // Menu
+        } else {
+            $this->user->nav = 'views/sidebar'; // Menu
+        }
     }
 
     protected function checkLevel(int $lvl): void
