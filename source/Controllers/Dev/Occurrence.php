@@ -57,4 +57,30 @@ class Occurrence extends Dev
         ]);
     }
 
+    public function btnPanic(array $data): void
+    {
+
+        $query = new OccurrenceRepository;
+        $lists = $query->getOccurrences([
+                            'page' => $data['page']??0,
+                            'url' => "admin/botao-panico/p/",
+                            "type" => 1,
+                            "status" => NULL
+                        ], 10, true);
+
+        $head = $this->seo->render(
+            CONF_SITE_NAME." | Dashboard",
+            CONF_SITE_DESC,//descrição do site
+            url('/admin'),//link home
+            theme("/assets/images/share.jpg")//imagem de compartilhamento
+        );
+
+        echo $this->view->render("occurrences/btn-panic", [
+            "head" => $head,
+            "user" => $this->user,
+            "lists" => $lists,
+            'paginator' => $query->pager()->render()
+        ]);
+    }
+
 }
