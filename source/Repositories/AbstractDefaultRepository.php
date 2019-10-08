@@ -15,11 +15,6 @@ abstract class AbstractDefaultRepository
 {
 
     /**
-    * @var Message
-    */
-    protected $message;
-
-    /**
     * @var Id
     */
     protected $id;
@@ -33,10 +28,7 @@ abstract class AbstractDefaultRepository
     * @var Post
     */
     protected $post;
-    /**
-     * @var object
-     */
-    protected $oRepository;
+
     /**
     * @var Pager
     */
