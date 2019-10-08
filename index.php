@@ -36,6 +36,8 @@ $route->get('/recuperar/{code}', 'Auth:reset');
 $route->post('/recuperar/resetar', 'Auth:reset');
 $route->get('/sair', 'Auth:logout');
 
+$route->get("/login-app", "Auth:loginApp");
+
 /***********************
  * WAR ROUTES        *
  **********************/
@@ -61,12 +63,14 @@ $route->get('/app/instrucao', 'App:instruction');
  * ADMIN ROUTES        *
  **********************/
 $route->namespace("DevBoot\Controllers\Dev");
-$route->group(null);
-$route->get('/admin', 'Admin:home');
-$route->get('/admin/ocorrencia/{id}', 'Occurrence:show');
-$route->post('/admin/ocorrencia/status', 'Occurrence:show');
-$route->get('/admin/usuarios', 'User:list');
-$route->post('/admin/atualizar-usuario', 'User:list');
+$route->group("/admin");
+$route->get('/', 'Admin:home');
+$route->get('/botao-panico', 'Occurrence:btnPanic');
+$route->get('/botao-panico/p/{page}', 'Occurrence:btnPanic');
+$route->get('/ocorrencia/{id}', 'Occurrence:show');
+$route->post('/ocorrencia/status', 'Occurrence:show');
+$route->get('/usuarios', 'User:list');
+$route->post('/atualizar-usuario', 'User:list');
 
 /***********************
  * ERROR ROUTES        *

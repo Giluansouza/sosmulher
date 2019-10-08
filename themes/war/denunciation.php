@@ -1,6 +1,6 @@
 <?php $v->layout("_theme"); ?>
 
-<!--==========================
+    <!--==========================
     Intro Section
     ============================-->
     <section id="denun">
@@ -104,7 +104,7 @@
             $('#address_coordinates').val(lat+","+lng);
         });
 
-        getLocation();
+
         //google.maps.event.addDomListener(window, 'load', initialise);
 
         function getLocation()
@@ -118,7 +118,6 @@
 
         function showPosition(position)
         {
-            // console.log(position.coords.latitude+position.coords.longitude);
             lat = position.coords.latitude;
             lng = position.coords.longitude;
             // Coordenadas do denunciante
@@ -143,18 +142,9 @@
             }
         }
 
-        // window.addEventListener('load',function(){
-        //     // if(document.getElementById('map-canvas')){
-        //     google.load("maps", "3",{
-        //         callback:function(){
-        //             geocoder = new google.maps.Geocoder();
-        //         }
-        //     });
-        //     // }
-        // },false);
-
         function initialise() {
             geocoder = new google.maps.Geocoder();
+            getLocation();
         };
 
         function geocodeLatLng(lat, lng) {
@@ -173,11 +163,11 @@
                 }
             });
         }
+
+        // google.maps.event.addDomListener(window, 'load', initialise);
     </script>
+    <!-- <script src="//maps.google.com/maps/api/js?key=<= CONF_APIKEY_MAPS ?>"></script> -->
     <script async defer
     src="//maps.googleapis.com/maps/api/js?key=AIzaSyAb_ZDqRKz79PYIsplkC9F8AqXMkEsM2-M&libraries=visualization&callback=initialise">
     </script>
-    <!-- <script async defer
-    src="//maps.googleapis.com/maps/api/js?key=AIzaSyAb_ZDqRKz79PYIsplkC9F8AqXMkEsM2-M&libraries=visualization">
-    </script> -->
 <?php $v->end(); ?>

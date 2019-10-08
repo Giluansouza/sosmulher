@@ -247,4 +247,26 @@ class Auth extends Controller
         redirect("/");
         return;
     }
+
+    public function loginApp(array $data)
+    {
+
+        $data['email_app'] = "giluan65@hotmail.com";
+        $data['password_app'] = "1234";
+
+        if (empty($data['email_app']) || empty($data['password_app'])) {
+            $json['login'] = 'ERRO_BLANK';
+        }
+
+        $auth = new AuthRepository();
+        $login = $auth->login($data['email_app'], $data['password_app']);
+        if (!$login) {
+            $json['login'] = 'ERRO';
+        } else {
+            $json['login'] = "SUCCESS";
+        }
+
+        echo json_encode($json);
+        return;
+    }
 }

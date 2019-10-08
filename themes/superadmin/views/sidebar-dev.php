@@ -6,7 +6,7 @@
                     <a href="<?= url("admin") ?>"><i class="fas fa-bars"></i><span> Início </span> </a>
                 </li>
                 <li class="submenu">
-                    <a href="<?= url("admin/panico") ?>"><i class="fa fa-fw fa-bullhorn"></i><span> Botão do Pânico </span> </a>
+                    <a href="<?= url("admin/botao-panico") ?>"><i class="fa fa-fw fa-bullhorn"></i><span> Botão do Pânico </span> </a>
                 </li>
                 <li class="submenu">
                     <a href="<?= url("admin/denuncias") ?>"><i class="fa fa-fw fa-clipboard"></i><span> Denúncias </span> </a>
