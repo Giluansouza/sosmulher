@@ -37,6 +37,7 @@ $route->post('/recuperar/resetar', 'Auth:reset');
 $route->get('/sair', 'Auth:logout');
 
 $route->get("/login-app", "Auth:loginApp");
+$route->get("/cadastrar-app", "Auth:registerApp");
 
 /***********************
  * WAR ROUTES        *
