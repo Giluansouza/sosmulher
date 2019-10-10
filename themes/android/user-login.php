@@ -2,27 +2,23 @@
 
     include_once __DIR__."/header.php";
 
-    use DevBoot\Commands\UserCmd;
-
     if (isset($_POST)) {
 
-        if (empty($data['email_app']) || empty($data['password_app'])) {
-            $json = ["message" => 'ERRO_BLANK'];
+        if ($_POST['email_app'] == "" || $_POST['password_app'] == ""){
+            $json['LOGIN'] = "ERROR";//$user->message()->render();
+            echo json_encode($json);
+            return;
         }
 
-        $auth = new AuthRepository();
-        $login = $auth->login($data['email_app'], $data['password_app']);
-        if (!$login) {
-            $json = ["message" => 'ERRO'];
-        } else {
-            $json = ["message" => 'SUCCESS'];
-        }
+        $data['email'] = $_POST['email_app'];
+        $data['password'] = $_POST['password_app'];
 
+        $json['LOGIN'] = "SUCCESS";//$this->message->success("Cadastrado com sucesso")->flash();
         echo json_encode($json);
-        // return;
+        return;
 
     } else {
-        $json['message'] = "ERROR";//$user->message()->render();
+        $json['LOGIN'] = "ERROR";
         echo json_encode($json);
         return;
     }
