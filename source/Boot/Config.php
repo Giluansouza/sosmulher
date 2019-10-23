@@ -81,9 +81,9 @@ define("CONF_IMAGE_QUALITY", ["jpg" => 75, "png" => 5]);
 /**
  * MAIL
  */
-define("CONF_MAIL_SENDER", ["name" => "Giluan Souza", "address" => "giluanjsouza@gmail.com"]);
-define("CONF_MAIL_SUPPORT", "giluanjsouza@gmail.com");
-define("CONF_MAIL_CONTACT", "giluan65@hotmail.com");
+define("CONF_MAIL_SENDER", ["name" => "SOS Mulher", "address" => "devboot_war@gmail.com"]);
+define("CONF_MAIL_SUPPORT", "devboot_war@gmail.com");
+define("CONF_MAIL_CONTACT", "devboot_war@gmail.com");
 define("CONF_MAIL_OPTION_LANG", "br");
 define("CONF_MAIL_OPTION_HTML", true);
 define("CONF_MAIL_OPTION_AUTH", true);
