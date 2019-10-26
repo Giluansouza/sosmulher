@@ -3,31 +3,44 @@
     include_once __DIR__."/header.php";
 
     use DevBoot\Commands\OccurrenceCmd;
+    use DevBoot\Commands\AddressCmd;
 
     if (isset($_POST)) {
 
-        if ($_POST['real_time'] == "" || $_POST['plaintiff'] == "" || $_POST['precautionary_measure'] == "" || $_POST['name_victim'] == "" || $_POST['name_accused'] == "" || $_POST['commit'] == "" || $_POST['public_place'] == "" || $_POST['complement'] == "" || $_POST['district'] == ""){
-            $json['CREATE'] = "ERROR";
+        if ($_POST['real_time'] == "" || $_POST['plaintiff'] == "" || $_POST['precautionary_measure'] == "" || $_POST['name_victim'] == "" || $_POST['name_accused'] == "" || $_POST['note'] == "" || $_POST['public_place'] == "" || $_POST['district'] == ""){
+            $json['CREATE'] = "ERROR_EM_BRANCO";
             echo json_encode($json);
             return;
         }
 
-        $data['real_time'] = $_POST['real_time'];
+        $data['type'] = 0;
+        $data['real_time'] = ($_POST['real_time'] == "Sim") ? 1 : 0;
         $data['plaintiff'] = $_POST['plaintiff'];
         $data['precautionary_measure'] = $_POST['precautionary_measure'];
         $data['name_victim'] = $_POST['name_victim'];
         $data['name_accused'] = $_POST['name_accused'];
-        $data['note'] = $_POST['commit'];
+        $data['note'] = $_POST['note'];
+        $data['users_id'] = $_POST['users_id']??0;
+        $data['ip_plaintiff'] = $_SERVER['REMOTE_ADDR'];
+        $data['plaintiff_coordinates'] = $_POST['plaintiff_coordinates'];
+
+        $query = new OccurrenceCmd($data);
+        $occurrence = $query->handle();
+        if (!$occurrence) {
+            $json['CREATE'] = "ERRO_OCORRENCIA";
+            echo json_encode($json);
+            return;
+        }
+
+        $data['occurrences_id'] = $occurrence->id;
         $data['public_place'] = $_POST['public_place'];
         $data['complement'] = $_POST['complement'];
         $data['district'] = $_POST['district'];
-        $data['users_id'] = $_POST['users_id']??0;
-        $data['ip_plaintiff'] = $_POST['ip_plaintiff'];
-        $data['plaintiff_coordinates'] = $_POST['plaintiff_coordinates'];
+        $data['coordinates'] = $_POST['coordinates'];
 
-        $user = new OccurrenceCmd($data);
-        if (!$user->handle()) {
-            $json['CREATE'] = $user->message()->render();
+        $query = new AddressCmd($data);
+        if (!$query->handle()) {
+            $json['CREATE'] = "ERROR_ENDEREÇO";
             echo json_encode($json);
             return;
         }

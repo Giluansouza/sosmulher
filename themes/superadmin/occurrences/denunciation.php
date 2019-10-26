@@ -20,19 +20,19 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="card card-box">
             <div class="card-header">
-                <h3><i class="fa fa-fw fa-bullhorn"></i> Botão do Pânico</h3>
+                <h3><i class="fa fa-fw fa-bullhorn"></i> Denúncias</h3>
             </div>
             <div class="card-body">
                 <!-- <div class="widget-messages nicescroll" style="height: 200px;"> -->
                 <?php if (empty($lists->toArray())): ?>
-                        <p class="alert alert-warning">Não existem acionamentos do botão do pânico</p>
+                        <p class="alert alert-warning">Não existem denúncias cadastradas</p>
                 <?php else: ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Horário</th>
-                                    <th>Usuário</th>
+                                    <th>Vitíma</th>
                                     <th>Coordenadas</th>
                                     <th>Situação</th>
                                     <th>Ação</th>
@@ -52,7 +52,7 @@
                                 ?>
                                         <tr <?= $class ?> >
                                             <td><?= date_fmt($list->updated_at, "d/m/Y H:i"); ?></td>
-                                            <td><?= $list->User->name; ?></td>
+                                            <td><?= $list->name_victim; ?></td>
                                             <td><?= $list->plaintiff_coordinates; ?></td>
                                             <td><?= $situation; ?></td>
                                             <td><a href="ocorrencia/<?= $list->id ?>" class="btn btn-sm btn-warning">Visualizar</a></td>

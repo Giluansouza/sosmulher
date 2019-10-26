@@ -24,7 +24,12 @@
             return;
         }
 
+        $user = $auth->user();
+
         $json['LOGIN'] = "SUCCESS";
+        $json['ID'] = $user->id;
+        $json['NAME'] = strstr($user->name, " ", true);
+        $json['EMAIL'] = $user->email;
         echo json_encode($json);
         return;
 
