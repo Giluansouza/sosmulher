@@ -32,7 +32,7 @@
                             <thead>
                                 <tr>
                                     <th>Horário</th>
-                                    <th>Vitíma</th>
+                                    <th>Vítima</th>
                                     <th>Coordenadas</th>
                                     <th>Situação</th>
                                     <th>Ação</th>
@@ -44,7 +44,7 @@
                                         $class = "";
                                         $situation = "Visualizada";
                                         if ($list->status == 0) {
-                                            $class = "class='bg-danger'";
+                                            $class = "class='bg-warning'";
                                             $situation = "Aberta";
                                         } else if ($list->status > 1) {
                                             $situation = "Encerrada";
@@ -53,14 +53,9 @@
                                         <tr <?= $class ?> >
                                             <td><?= date_fmt($list->updated_at, "d/m/Y H:i"); ?></td>
                                             <td><?= $list->name_victim; ?></td>
-                                            <td><?= $list->plaintiff_coordinates; ?></td>
+                                            <td><?= $list->Address->coordinates??""; ?></td>
                                             <td><?= $situation; ?></td>
                                             <td><a href="ocorrencia/<?= $list->id ?>" class="btn btn-sm btn-warning">Visualizar</a></td>
-                                            <?php if ($key == 0 && $list->status == 0): ?>
-                                                <audio id="notificacao" preload="auto" autoplay="" src="<?= theme("/../../storage/files/beautiful-guitar.wav") ?>">
-                                                    <p>Seu nevegador não suporta o elemento audio.</p>
-                                                </audio>
-                                            <?php endif ?>
                                         </tr>
                                     <?php endforeach; ?>
                             </tbody>

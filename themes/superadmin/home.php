@@ -83,7 +83,7 @@
                             <thead>
                                 <tr>
                                     <th>Horário</th>
-                                    <th>Usuário</th>
+                                    <th>Nome da vítima</th>
                                     <th>Coordenadas</th>
                                     <th>Situação</th>
                                     <th>Ação</th>
@@ -100,16 +100,18 @@
                                     </tr>
                                 <?php else:
                                     foreach ($denunciation as $list):
+                                        $class = "";
                                         $situation = "Visualizada";
                                         if ($list->status == 0) {
+                                            $class = "class='bg-warning'";
                                             $situation = "Aberta";
                                         }
                                 ?>
 
-                                        <tr>
+                                        <tr <?= $class ?>>
                                             <td><?= date_fmt($list->updated_at, "d/m/Y H:i"); ?></td>
-                                            <td><?= $list->users_id; ?></td>
-                                            <td><?= $list->plaintiff_coordinates; ?></td>
+                                            <td><?= $list->name_victim; ?></td>
+                                            <td><?= $list->Address->coordinates??""; ?></td>
                                             <td><?= $situation; ?></td>
                                             <td><?= ($list->status == 0)? "<a href=\"admin/ocorrencia/{$list->id}\" class=\"btn btn-sm btn-warning\">Visualizar</a>" : "Visualizada"; ?></td>
                                         </tr>
