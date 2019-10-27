@@ -68,6 +68,8 @@ $route->group("/admin");
 $route->get('/', 'Admin:home');
 $route->get('/botao-panico', 'Occurrence:btnPanic');
 $route->get('/botao-panico/p/{page}', 'Occurrence:btnPanic');
+$route->get('/denuncias', 'Occurrence:denunciation');
+$route->get('/denuncias/p/{page}', 'Occurrence:denunciation');
 $route->get('/ocorrencia/{id}', 'Occurrence:show');
 $route->post('/ocorrencia/status', 'Occurrence:show');
 $route->get('/usuarios', 'User:list');

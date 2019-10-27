@@ -79,20 +79,23 @@
         </div>
     </div> <!-- end col -->
 </div> <!-- end row -->
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="maparea" id="map2"></div>
-            </div>
-        </div><!-- end card-->
+<?php if ($result->type == 1): ?>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="maparea" id="map2"></div>
+                </div>
+            </div><!-- end card-->
+        </div>
     </div>
-</div>
-<div id='data'><?= json_encode($result); ?></div>
-<?php $v->start("scripts") ?>
-    <!-- BEGIN Java Script for this page -->
-    <script src="//maps.google.com/maps/api/js?key=<?= getenv('GOOGLE_MAPS_APIKEY') ?>"></script>
-    <script src="<?= theme("/../superadmin/assets/plugins/gmapsjs/gmaps.js"); ?>"></script>
-    <script src="<?= theme("/../../shared/js/unit-map.js"); ?>"></script>
-    <!-- END Java Script for this page -->
-<?php $v->end() ?>
+    <div id='data'><?= json_encode($result); ?></div>
+    <?php $v->start("scripts") ?>
+        <!-- BEGIN Java Script for this page -->
+        <script src="//maps.google.com/maps/api/js?key=<?= getenv('GOOGLE_MAPS_APIKEY') ?>"></script>
+        <script src="<?= theme("/../superadmin/assets/plugins/gmapsjs/gmaps.js"); ?>"></script>
+        <script src="<?= theme("/../../shared/js/unit-map.js"); ?>"></script>
+        <!-- END Java Script for this page -->
+    <?php $v->end() ?>
+<?php endif ?>

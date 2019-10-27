@@ -83,4 +83,30 @@ class Occurrence extends Dev
         ]);
     }
 
+    public function denunciation(array $data): void
+    {
+
+        $query = new OccurrenceRepository;
+        $lists = $query->getOccurrences([
+                            'page' => $data['page']??0,
+                            'url' => "admin/denuncias/p/",
+                            "type" => 0,
+                            "status" => NULL
+                        ], 10, true);
+
+        $head = $this->seo->render(
+            CONF_SITE_NAME." | Dashboard",
+            CONF_SITE_DESC,//descrição do site
+            url('/admin'),//link home
+            theme("/assets/images/share.jpg")//imagem de compartilhamento
+        );
+
+        echo $this->view->render("occurrences/denunciation", [
+            "head" => $head,
+            "user" => $this->user,
+            "lists" => $lists,
+            'paginator' => $query->pager()->render()
+        ]);
+    }
+
 }

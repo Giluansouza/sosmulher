@@ -2,10 +2,12 @@
 
     include_once __DIR__."/header.php";
 
-    if (isset($_POST)) {
+    use DevBoot\Repositories\AuthRepository;
+
+    if (isset($_POST['email_app'])) {
 
         if ($_POST['email_app'] == "" || $_POST['password_app'] == ""){
-            $json['LOGIN'] = "ERROR";//$user->message()->render();
+            $json['LOGIN'] = "PREENCHA O E-MAIL E A SENHA";
             echo json_encode($json);
             return;
         }
@@ -13,12 +15,26 @@
         $data['email'] = $_POST['email_app'];
         $data['password'] = $_POST['password_app'];
 
-        $json['LOGIN'] = "SUCCESS";//$this->message->success("Cadastrado com sucesso")->flash();
+        $auth = new AuthRepository();
+        $login = $auth->login($data['email'], $data['password']);
+
+        if (!$login) {
+            $json['LOGIN'] = "E-MAIL OU SENHA INCORRETOS";
+            echo json_encode($json);
+            return;
+        }
+
+        $user = $auth->user();
+
+        $json['LOGIN'] = "SUCCESS";
+        $json['ID'] = $user->id;
+        $json['NAME'] = strstr($user->name, " ", true);
+        $json['EMAIL'] = $user->email;
         echo json_encode($json);
         return;
 
     } else {
-        $json['LOGIN'] = "ERROR";
+        $json['LOGIN'] = "ERRO AO TENTAR ENTRAR";
         echo json_encode($json);
         return;
     }
