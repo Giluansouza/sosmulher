@@ -46,7 +46,7 @@
         <div class="headerbar">
             <!-- LOGO -->
             <div class="headerbar-left">
-                <a href="<?= url('/dev') ?>" class="logo">
+                <a href="<?= url('/admin') ?>" class="logo">
                     <img alt="Logo" src="<?= theme("/assets/img/apple-touch-icon.png"); ?>"/>
                     <span>SOSMulher</span>
                 </a>
