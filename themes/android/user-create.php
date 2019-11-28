@@ -4,7 +4,7 @@
 
     use DevBoot\Commands\UserCmd;
 
-    if (isset($_POST)) {
+    if (isset($_POST) && !empty($_POST)) {
 
         if ($_POST['name_app'] == "" || $_POST['cpf_app'] == "" || $_POST['email_app'] == "" || $_POST['password_app'] == ""){
             $json['CREATE'] = "ERROR";
@@ -20,7 +20,7 @@
 
         $user = new UserCmd ($data);
         if (!$user->handle()) {
-            $json['CREATE'] = "NÃO FOI POSSÍVEL REALIAR O CADASTRO";
+            $json['CREATE'] = $user->message()->textString();
             echo json_encode($json);
             return;
         }

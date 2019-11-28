@@ -26,9 +26,10 @@
 
         $user = $auth->user();
 
+        $name = explode(" ", $user->name,2);
         $json['LOGIN'] = "SUCCESS";
         $json['ID'] = $user->id;
-        $json['NAME'] = strstr($user->name, " ", true);
+        $json['NAME'] = $name[0];
         $json['EMAIL'] = $user->email;
         echo json_encode($json);
         return;

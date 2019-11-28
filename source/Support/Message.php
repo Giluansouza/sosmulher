@@ -116,6 +116,14 @@ class Message
     }
 
     /**
+     * @return string
+     */
+    public function textString(): string
+    {
+        return $this->getText();
+    }
+
+    /**
      * Set flash Session Key
      */
     public function flash(): void

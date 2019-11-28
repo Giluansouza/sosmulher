@@ -45,15 +45,6 @@ class UserRepository extends AbstractDefaultRepository implements UserRepoInterf
             $newUser->cpf = $cpf;
             $newUser->email = $email;
             $newUser->password = passwd($password);
-            // $newUser->level = $user->level;
-            // $newUser->office_registry = $user->office_registry;
-            // $newUser->office = $user->office;
-            // $newUser->office_unity_id = $user->office_unity_id;
-            // $newUser->function = $user->function;
-            // $newUser->phone_number = $user->phone_number;
-            // $newUser->status = $user->status;
-            // $newUser->reserved = $user->reserved;
-            // $newUser->photo = $user->photo;
             if (!$newUser->save()) {
                 $this->message->error("Não foi possível finalizar o cadastro");
                 return;

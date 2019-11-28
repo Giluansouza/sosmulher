@@ -27,7 +27,7 @@
         $query = new OccurrenceCmd($data);
         $occurrence = $query->handle();
         if (!$occurrence) {
-            $json['CREATE'] = "ERRO_OCORRENCIA";
+            $json['CREATE'] = $occurrence->message()->textString();
             echo json_encode($json);
             return;
         }

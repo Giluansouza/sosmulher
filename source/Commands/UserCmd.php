@@ -49,7 +49,7 @@ class UserCmd extends Command
     protected function validation(): bool
     {
 
-        if ($this->data['name'] == "" || $this->data['cpf'] == "" || $this->data['email'] == "" || $this->data['password'] == "") {
+        if ($this->data['name'] == "" || $this->data['cpf'] == "" || $this->data['email'] == "" || $this->data['password'] == "" || $this->data['conf_password'] == "") {
             $this->message->error("Todos os campos são de preenchimento obrigatório");
             return false;
         }
